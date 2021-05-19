@@ -31,28 +31,12 @@ describe 'Landing Page' do
   end
 end
 
-describe 'Browse Categories' do
-  it 'has the correct browse categories' do
-    visit('/browse/')
-    expect(page).to have_selector('.browse-group-navigation li', count: 5)
-    expect(page).to have_content('All')
-    expect(page).to have_content('Recently Added')
-    expect(page).to have_content('Manuscripts')
-    expect(page).to have_content('Art & Architecture')
-    expect(page).to have_content('Photography')
+describe 'About Page' do
+  it 'Only has one address' do
+    visit('/about/exhibits')
+    doc = Nokogiri::HTML(page.html)
+    expect(page).to have_selector('.contacts li', count: 1)
   end
-
-  # it 'has the correct number of records' do
-  #   visit('/browse/')
-  #
-  #   doc = Nokogiri::HTML(page.html)
-  #   categories = doc.search("//div[contains(@class, 'category')]")
-  #
-  #
-  #   $stderr.puts categories.class
-  #
-  #   visit('/browse/qur-an-manuscripts')
-  # end
 end
 
 describe 'Basic Search' do
