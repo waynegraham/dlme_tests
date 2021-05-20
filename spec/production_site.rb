@@ -2,6 +2,8 @@ require 'capybara'
 require 'capybara/dsl'
 require 'spec_helper'
 
+require 'open-uri'
+
 Capybara.default_driver = :selenium_chrome
 Capybara.app_host = 'https://dlmenetwork.org/library'
 
@@ -28,7 +30,24 @@ describe 'Landing Page' do
       expect(page).to have_content('Art & Architecture')
       expect(page).to have_content('Photography')
     end
+
   end
+
+  context 'category thumbnails' do
+    it 'has valid thumbnails' do
+      visit('/')
+      doc = Nokogiri::HTML(page.html)
+      categories = doc.search("//div[contains(@class, 'browse-category')]")
+      # get the first image off the page
+      url = categories[0]['style'].match(/url\(.+\)+/);
+      link = url.to_s.match(/\"([^\"]*)/).to_s.gsub("\"",'')
+
+      URI.open("https://dlmenetwork.org#{link}") do |f|
+        expect(f.status).to eq(["200", "OK"])
+      end
+    end
+  end
+
 end
 
 describe 'About Page' do
