@@ -30,6 +30,7 @@ end
 
 namespace :performance do
 
+  desc 'Run all performance tests and generate report'
   task all: [:landing_page, :simple_search, :browse_categories]
 
   desc 'Landing page timing'
