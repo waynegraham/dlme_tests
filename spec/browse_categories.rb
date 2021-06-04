@@ -11,7 +11,7 @@ Capybara.app_host = 'https://dlmenetwork.org/'
 describe 'Browse Categories' do
 
   it 'has the correct browse categories' do
-    visit('/library/browse/')
+    visit('/browse/')
     expect(page).to have_selector('.browse-group-navigation li', count: 5)
     expect(page).to have_content('All')
     expect(page).to have_content('Recently Added')
@@ -21,7 +21,7 @@ describe 'Browse Categories' do
   end
 
   it 'has the expected number of results' do
-    visit('/library/browse/')
+    visit('/browse/')
 
     doc = Nokogiri::HTML(page.html)
     categories = doc.search("//div[contains(@class, 'category')]")

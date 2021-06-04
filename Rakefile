@@ -1,8 +1,8 @@
 require 'selenium-webdriver'
 require 'terminal-table'
 
-@driver = Selenium::WebDriver.for:chrome
-@wait = Selenium::WebDriver::Wait.new(:timeout => 30)
+@driver = Selenium::WebDriver.for :chrome
+@wait = Selenium::WebDriver::Wait.new(timeout: 30)
 @app_host = 'https://dlmenetwork.org/library'
 @rows = []
 
@@ -29,14 +29,12 @@ task :report do
 end
 
 namespace :performance do
-
   desc 'Run all performance tests and generate report'
-  task all: [:landing_page, :simple_search, :browse_categories]
+  task all: %i[landing_page simple_search browse_categories]
 
   desc 'Landing page timing'
   task :landing_page do
     setup
-
     timing = elapsed_time(@start_time, timestamp)
     @rows << ['landing_page', timing]
   end
@@ -48,7 +46,7 @@ namespace :performance do
     search = @driver.find_element(id: 'q')
     search.send_keys('persian gulf')
     button = @driver.find_element(class: 'blacklight-icon-search').click
-    @wait.until { @driver.find_element(:class => 'page-links') }
+    @wait.until { @driver.find_element(class: 'page-links') }
 
     timing = elapsed_time(@start_time, timestamp)
 
@@ -65,14 +63,14 @@ namespace :performance do
 
     timing = elapsed_time(@start_time, timestamp)
 
-
     @rows << ['browse_categories', timing]
-
-
-
   end
 
-
-
-
+  desc 'Load test'
+  task :load do
+    users = 5
+    requests = 500
+    seconds = 1200
+    puts "ab -c #{users} -n #{requests} -s #{seconds} #{@app_host}"
+  end
 end
