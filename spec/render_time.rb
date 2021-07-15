@@ -1,9 +1,4 @@
-require 'capybara'
-require 'capybara/dsl'
 require 'spec_helper'
-
-Capybara.default_driver = :selenium_chrome
-Capybara.app_host = 'https://dlmenetwork.org/library'
 
 describe 'Loading time' do
   before :each do

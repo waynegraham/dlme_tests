@@ -1,11 +1,4 @@
-require 'capybara'
-require 'capybara/dsl'
 require 'spec_helper'
-
-require 'open-uri'
-
-Capybara.default_driver = :selenium_chrome
-Capybara.app_host = 'https://dlmenetwork.org/library'
 
 describe 'Landing Page' do
   before :each do
@@ -24,11 +17,12 @@ describe 'Landing Page' do
 
   context 'Browse Categories' do
     it 'has 4 major browse categories' do
-      expect(page).to have_selector('.browse-group-categories-block h2', count: 4)
+      expect(page).to have_selector('.browse-group-categories-block h2', count: 5)
       expect(page).to have_content('Recently Added')
       expect(page).to have_content('Manuscripts')
       expect(page).to have_content('Art & Architecture')
       expect(page).to have_content('Photography')
+      expect(page).to have_content('Serials')
     end
 
   end

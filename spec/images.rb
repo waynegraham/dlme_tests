@@ -1,11 +1,4 @@
-require 'capybara'
-require 'capybara/dsl'
 require 'spec_helper'
-
-require 'open-uri'
-
-Capybara.default_driver = :selenium_chrome
-Capybara.app_host = 'https://dlmenetwork.org/library'
 
 describe 'Thumbnail images' do
   it 'has thumbnail images' do

@@ -1,22 +1,15 @@
-require 'capybara'
-require 'capybara/dsl'
 require 'spec_helper'
-
-Capybara.default_driver = :selenium_chrome
-Capybara.app_host = 'https://dlmenetwork.org/'
-
-# Note, removed the `/library` from `app_host` because of how Capybara contructs
-# URLs, to make it easier
 
 describe 'Browse Categories' do
 
   it 'has the correct browse categories' do
     visit('/browse/')
-    expect(page).to have_selector('.browse-group-navigation li', count: 5)
+    expect(page).to have_selector('.browse-group-navigation li', count: 6)
     expect(page).to have_content('All')
     expect(page).to have_content('Recently Added')
     expect(page).to have_content('Manuscripts')
     expect(page).to have_content('Art & Architecture')
+    expect(page).to have_content('Serials')
     expect(page).to have_content('Photography')
   end
 
@@ -32,8 +25,9 @@ describe 'Browse Categories' do
       label = category.search('span[@class="title"]').text
 
       link = category.search('a').first
+      # clean up the link as capybara appends this to the base URI
+      visit(link['href'].gsub('/library', ''))
 
-      visit(link['href'])
       doc2 = Nokogiri::HTML(page.html)
       page_count = doc2.search('small').text.gsub(/item?(s?)/, '').strip.to_i
       expect(page_count).to eq(count)
