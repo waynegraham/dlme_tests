@@ -10,7 +10,7 @@ bundle
 ```
 be rspec spec/production_site.rb
 be rspec spec/browse_categories.rb
-be rspec spec/*
+be rspec spec/*_spec.rb
 ```
 
 ## Time measurements
