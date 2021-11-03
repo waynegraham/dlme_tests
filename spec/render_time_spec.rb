@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Loading time' do
@@ -8,9 +10,15 @@ describe 'Loading time' do
 
   it 'loads the landing page within 3 seconds' do
     # @see https://www.lambdatest.com/blog/how-to-measure-page-load-times-with-selenium/
-    # - navigationStart – This attribute returns the time spent after the user agent completes unloading the previous page/document. If there was no document prior to loading the new page, navigationStart returns the same value as fetchStart.
-    # - responseStart – This attribute returns the time as soon as the user-agent receives the first byte from the server or from the local sources/application cache.
-    # - domComplete – This attribute returns the time just before the current document/page readiness is set to ‘complete’. document.readyState status as ‘complete’ indicates that the parsing of the page/document is complete & all the resources required for the page are downloaded. We will have a look an example of domComplete in subsequent section.
+    # - navigationStart – This attribute returns the time spent after the user agent completes
+    #     unloading the previous page/document. If there was no document prior to loading the new page,
+    #     navigationStart returns the same value as fetchStart.
+    # - responseStart – This attribute returns the time as soon as the user-agent receives the first
+    #     byte from the server or from the local sources/application cache.
+    # - domComplete – This attribute returns the time just before the current document/page readiness
+    #     is set to ‘complete’. document.readyState status as ‘complete’ indicates that the parsing of
+    #     the page/document is complete & all the resources required for the page are downloaded. We
+    #     will have a look an example of domComplete in subsequent section.
     navigation_start = execute_script('return window.performance.timing.navigationStart')
     response_start = execute_script('return window.performance.timing.responseStart')
     dom_complete = execute_script('return window.performance.timing.domComplete')
@@ -38,6 +46,5 @@ describe 'Loading time' do
     @end_time = Time.now.to_f
 
     expect(@end_time - @start_time).to be <= @target_ms
-
   end
 end

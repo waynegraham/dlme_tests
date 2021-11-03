@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Browse Categories' do
-
   it 'has the correct browse categories' do
     visit('/browse/')
     expect(page).to have_selector('.browse-group-navigation li', count: 6)
@@ -22,7 +23,7 @@ describe 'Browse Categories' do
     categories.each do |category|
       # extract item count
       count = category.search('small').text.gsub(/item?(s?)/, '').strip.to_i
-      label = category.search('span[@class="title"]').text
+      category.search('span[@class="title"]').text
 
       link = category.search('a').first
       # clean up the link as capybara appends this to the base URI

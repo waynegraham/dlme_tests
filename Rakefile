@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'selenium-webdriver'
 require 'terminal-table'
 
@@ -5,6 +7,7 @@ begin
   require 'rspec/core/rake_task'
   RSpec::Core::RakeTask.new(:spec)
 rescue LoadError
+  # no rspec available
 end
 
 @driver = Selenium::WebDriver.for :chrome
@@ -51,7 +54,7 @@ namespace :performance do
 
     search = @driver.find_element(id: 'q')
     search.send_keys('persian gulf')
-    button = @driver.find_element(class: 'blacklight-icon-search').click
+    @driver.find_element(class: 'blacklight-icon-search').click
     @wait.until { @driver.find_element(class: 'page-links') }
 
     timing = elapsed_time(@start_time, timestamp)

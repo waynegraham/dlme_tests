@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Landing Page' do
@@ -24,7 +26,6 @@ describe 'Landing Page' do
       expect(page).to have_content('Photography')
       expect(page).to have_content('Serials')
     end
-
   end
 
   context 'category thumbnails' do
@@ -33,27 +34,25 @@ describe 'Landing Page' do
       doc = Nokogiri::HTML(page.html)
       categories = doc.search("//div[contains(@class, 'browse-category')]")
       # get the first image off the page
-      url = categories[0]['style'].match(/url\(.+\)+/);
-      link = url.to_s.match(/\"([^\"]*)/).to_s.gsub("\"",'')
+      url = categories[0]['style'].match(/url\(.+\)+/)
+      link = url.to_s.match(/"([^"]*)/).to_s.gsub('"', '')
 
       URI.open("https://dlmenetwork.org#{link}") do |f|
-        expect(f.status).to eq(["200", "OK"])
+        expect(f.status).to eq(%w[200 OK])
       end
     end
   end
-
 end
 
 describe 'About Page' do
   it 'Only has one address' do
     visit('/about/exhibits')
-    doc = Nokogiri::HTML(page.html)
+    # doc = Nokogiri::HTML(page.html)
     expect(page).to have_selector('.contacts li', count: 1)
   end
 end
 
 describe 'Basic Search' do
-
   before :each do
     visit('/')
   end

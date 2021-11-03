@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'Thumbnail images' do
@@ -8,14 +10,12 @@ describe 'Thumbnail images' do
 
     # check all thumbnail images
     categories.each do |category|
-      url = category['style'].match(/url\(.+\)+/);
-      link = url.to_s.match(/\"([^\"]*)/).to_s.gsub("\"",'')
+      url = category['style'].match(/url\(.+\)+/)
+      link = url.to_s.match(/"([^"]*)/).to_s.gsub('"', '')
 
       URI.open("https://dlmenetwork.org#{link}") do |f|
-        expect(f.status).to eq(["200", "OK"])
+        expect(f.status).to eq(%w[200 OK])
       end
-
     end
-
   end
 end
