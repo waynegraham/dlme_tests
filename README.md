@@ -18,3 +18,5 @@ be rspec spec/*
 ```
 rake performance:all report
 ```
+
+TODO: link to the metadata record
