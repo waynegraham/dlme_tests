@@ -1,6 +1,12 @@
 require 'selenium-webdriver'
 require 'terminal-table'
 
+begin
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new(:spec)
+rescue LoadError
+end
+
 @driver = Selenium::WebDriver.for :chrome
 @wait = Selenium::WebDriver::Wait.new(timeout: 30)
 @app_host = 'https://dlmenetwork.org/library'
