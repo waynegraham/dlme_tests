@@ -10,6 +10,8 @@ rescue LoadError
   # no rspec available
 end
 
+task default: [:spec]
+
 @driver = Selenium::WebDriver.for :chrome
 @wait = Selenium::WebDriver::Wait.new(timeout: 30)
 @app_host = 'https://dlmenetwork.org/library'
