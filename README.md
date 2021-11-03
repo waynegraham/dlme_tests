@@ -1,3 +1,7 @@
+# DLME Production Integration Tests
+![example workflow](https://github.com/waynegraham/dlme_tests/actions/workflows/ruby.yml/badge.svg)
+
+
 # Installation
 
 ```
