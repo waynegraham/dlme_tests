@@ -12,8 +12,8 @@ bundle
 ## Running Tests
 
 ```
-be rspec spec/production_site.rb
-be rspec spec/browse_categories.rb
+be rspec spec/production_site_spec.rb
+be rspec spec/browse_categories_spec.rb
 be rspec spec/*_spec.rb
 ```
 
