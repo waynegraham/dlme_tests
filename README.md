@@ -5,9 +5,14 @@
 # Installation
 
 ```
-brew install chromedriver
-bundle
+bundle install
 ```
+
+You'll also need ChromeDriver and the `brew` version doesn't keep pace with Chrome's evergreen releases.
+
+* Get the latest [ChromeDriver](https://sites.google.com/chromium.org/driver/downloads)
+* Extract and move chromedriver to `/usr/local/bin/`
+* Open the file (`open /usr/local/bin/`) and right-click open `chromedriver` (for the **Error: "chromedriver" cannot be opened because the developer cannot be verified** message in macOS)
 
 ## Running Tests
 
