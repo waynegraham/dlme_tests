@@ -3,6 +3,7 @@
 require 'spec_helper'
 
 describe 'IIIF Item Page' do
+  
   it 'has all the correct metadata fields' do
     visit '/catalog/harvard_scw-3288'
 
@@ -38,6 +39,6 @@ describe 'Non-IIIF Item Page' do
   it 'exists' do
     visit '/catalog/51.72'
 
-    expect(page).to  have_http_status?(200)
+    expect(page).to have_content('"Turban" Helmet')
   end
 end
