@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe 'Item Page' do
+describe 'IIIF Item Page' do
   it 'has all the correct metadata fields' do
     visit '/catalog/harvard_scw-3288'
 
@@ -31,5 +31,13 @@ describe 'Item Page' do
     expect(page).to have_content('8001347307_URN-3:FHCL:32603475')
     expect(page).to have_selector('.blacklight-is_part_of')
     expect(page).to have_content('Stuart Cary Welch Islamic and South Asian Photographic Collection')
+  end
+end
+
+describe 'Non-IIIF Item Page' do
+  it 'exists' do
+    visit '/catalog/51.72'
+
+    expect(page).to  have_http_status?(200)
   end
 end
