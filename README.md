@@ -43,5 +43,3 @@ These tests run every Tuesday at midnight. If there is a failure, repo collabora
 ```
 rake performance:all report
 ```
-
-TODO: link to the metadata record
