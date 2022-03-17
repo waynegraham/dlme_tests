@@ -12,8 +12,9 @@ describe 'Landing Page' do
   end
 
   context 'facets' do
-    it 'has 5 facet groups' do
-      expect(page).to have_selector('#facet-panel-homepage-collapse h3', count: 5)
+    it 'has 6 facet groups' do
+      # ('Type', 'Language', 'Date range', 'Holding institution', 'Data provider', 'Collection')
+      expect(page).to have_selector('#facet-panel-homepage-collapse h3', count: 6)
     end
   end
 
